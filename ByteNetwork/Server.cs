@@ -14,22 +14,33 @@ namespace ByteNetwork
         public event Recieve OnRecieve;
 
         private UdpClient ServerUDP;
+        private IPEndPoint Endpoint;
 
-        public void Start(int port)
+        private bool StopListening = false;
+
+        public Server(int port)
         {
             ServerUDP = new UdpClient(port);
+            Endpoint = new IPEndPoint(IPAddress.Any, port);
+        }
 
-            while (true)
+        public void Listen()
+        {
+            while (!StopListening)
             {
-                System.Net.IPEndPoint endpoint = new System.Net.IPEndPoint(IPAddress.Any, port);
-                var data = ServerUDP.Receive(ref endpoint);
-                OnRecieve(endpoint, data);
+                var data = ServerUDP.Receive(ref Endpoint);
+                OnRecieve(Endpoint, data);
             }
         }
 
         public void Send(IPEndPoint endpoint, byte[] data)
         {
             ServerUDP.Send(data, data.Length, endpoint);
+        }
+
+        public void Stop()
+        {
+            StopListening = true;
         }
     }
 }

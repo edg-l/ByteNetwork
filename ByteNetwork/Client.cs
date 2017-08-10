@@ -18,6 +18,8 @@ namespace ByteNetwork
         private IPAddress Address;
         private int Port;
 
+        private bool StopListening = false;
+
         public void Connect(string address, int port)
         {
             ClientUDP = new UdpClient();
@@ -28,9 +30,8 @@ namespace ByteNetwork
 
         public void Listen()
         {
-            while (true)
+            while (!StopListening)
             {
-                
                 IPEndPoint endpoint = new IPEndPoint(Address, Port);
                 var data = ClientUDP.Receive(ref endpoint);
                 OnRecieve(data);
@@ -40,6 +41,11 @@ namespace ByteNetwork
         public void Send(byte[] data)
         {
             ClientUDP.Send(data, data.Length);
+        }
+
+        public void Stop()
+        {
+            StopListening = true;
         }
     }
 }

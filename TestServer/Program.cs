@@ -4,18 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ByteNetwork;
+using System.Threading;
 
 namespace TestServer
 {
     class Program
     {
         static Server server;
+
         static void Main(string[] args)
         {
             Console.WriteLine("Server started");
-            server = new Server();
+            server = new Server(8706);
             server.OnRecieve += Server_OnRecieve;
-            server.Start(8706);
+
+            Thread ListenThread = new Thread(server.Listen);
+            ListenThread.Start();
         }
 
         private static void Server_OnRecieve(System.Net.IPEndPoint address, byte[] data)
