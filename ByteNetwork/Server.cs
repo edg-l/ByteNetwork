@@ -8,7 +8,7 @@ using System.Net;
 
 namespace ByteNetwork
 {
-    public class Server
+    public class NetServer
     {
         public delegate void Recieve(IPEndPoint address, byte[] data);
         public event Recieve OnRecieve;
@@ -18,7 +18,7 @@ namespace ByteNetwork
 
         private bool StopListening = false;
 
-        public Server(int port)
+        public NetServer(int port)
         {
             ServerUDP = new UdpClient(port);
             Endpoint = new IPEndPoint(IPAddress.Any, port);

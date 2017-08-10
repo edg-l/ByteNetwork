@@ -10,12 +10,12 @@ namespace TestServer
 {
     class Program
     {
-        static Server server;
+        static NetServer server;
 
         static void Main(string[] args)
         {
             Console.WriteLine("Server started");
-            server = new Server(8706);
+            server = new NetServer(8706);
             server.OnRecieve += Server_OnRecieve;
 
             Thread ListenThread = new Thread(server.Listen);
@@ -26,10 +26,10 @@ namespace TestServer
         {
             if (data[0] == 1)
             {
-                string result = Helper.FromByteUTF8(data.Skip(1).ToArray());
+                string result = NetHelper.FromByteUTF8(data.Skip(1).ToArray());
                 Console.WriteLine("Recieved data from {0}:{1}: [{2}]", address.Address, address.Port, String.Join(", ", data));
                 Console.WriteLine(result.Replace("\n", ""));
-                var buffer = Helper.AppendText(1, "Welcome client!", Encoding.UTF8);
+                var buffer = NetHelper.AppendText(1, "Welcome client!", Encoding.UTF8);
                 buffer[0] = 1;
                 server.Send(address, buffer);
             }

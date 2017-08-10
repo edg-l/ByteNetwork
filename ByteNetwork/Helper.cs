@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ByteNetwork
 {
-    public static class Helper
+    public static class NetHelper
     {
         public static byte[] FromStringUTF8(string text)
         {

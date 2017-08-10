@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace ByteNetwork
 {
-    public class Client
+    public class NetClient
     {
         private UdpClient ClientUDP;
 
@@ -20,7 +20,7 @@ namespace ByteNetwork
 
         private bool StopListening = false;
 
-        public void Connect(string address, int port)
+        public NetClient(string address, int port)
         {
             ClientUDP = new UdpClient();
             ClientUDP.Connect(address, port);
