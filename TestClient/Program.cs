@@ -24,8 +24,6 @@ namespace TestClient
             buffer[0] = 1;
 
             client.Send(buffer);
-            Thread.Sleep(200);
-            Console.Read();
         }
 
         private static void Client_OnRecieve(byte[] data)
