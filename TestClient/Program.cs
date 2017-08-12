@@ -14,7 +14,7 @@ namespace TestClient
         {
             Console.WriteLine("Client started");
             Thread.Sleep(100);
-            NetClient client = new NetClient("164.132.59.136", 8706);
+            NetClient client = new NetClient("127.0.0.1", 8706);
             client.OnRecieve += Client_OnRecieve;
 
             Thread ClientThread = new Thread(client.Listen);
