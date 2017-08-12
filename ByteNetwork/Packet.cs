@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace ByteNetwork
 {
-    public class Packet
+    public class NetPacket
     {
         public List<byte> Buffer { get; set; }
 
-        public Packet()
+        public NetPacket()
         {
             Buffer = new List<byte>();
         }
 
-        public Packet(byte[] data)
+        public NetPacket(byte[] data)
         {
             Buffer = new List<byte>(data);
         }

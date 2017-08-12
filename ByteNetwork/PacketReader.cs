@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ByteNetwork
 {
-    public class PacketReader
+    public class NetPacketReader
     {
-        Packet Packet;
+        NetPacket Packet;
 
         int CurrentIndex;
 
-        public PacketReader(Packet packet)
+        public NetPacketReader(NetPacket packet)
         {
             Packet = packet;
             CurrentIndex = 0;

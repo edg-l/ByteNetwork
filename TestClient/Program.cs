@@ -14,21 +14,21 @@ namespace TestClient
         {
             Console.WriteLine("Client started");
             Thread.Sleep(100);
-            NetClient client = new NetClient("127.0.0.1", 8706);
+            NetClient client = new NetClient("164.132.59.136", 8706);
             client.OnRecieve += Client_OnRecieve;
 
             Thread ClientThread = new Thread(client.Listen);
             ClientThread.Start();
 
-            Packet send_packet = new Packet();
+            NetPacket send_packet = new NetPacket();
             send_packet.Write((byte)1);
             send_packet.Write("Hello world!");
             client.Send(send_packet);
         }
 
-        private static void Client_OnRecieve(Packet packet)
+        private static void Client_OnRecieve(NetPacket packet)
         {
-            var reader = new PacketReader(packet);
+            var reader = new NetPacketReader(packet);
             var type = reader.Read<byte>();
             if (type == 1)
             {

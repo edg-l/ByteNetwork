@@ -22,16 +22,16 @@ namespace TestServer
             ListenThread.Start();
         }
 
-        private static void Server_OnRecieve(System.Net.IPEndPoint address, Packet packet)
+        private static void Server_OnRecieve(System.Net.IPEndPoint address, NetPacket packet)
         {
-            var reader = new PacketReader(packet);
+            var reader = new NetPacketReader(packet);
             var type = reader.Read<byte>();
             if (type == 1)
             {
                 string result = reader.Read<string>();
                 Console.WriteLine("Recieved data from {0}:{1}: {2}", address.Address, address.Port, result);
 
-                Packet send_packet = new Packet();
+                NetPacket send_packet = new NetPacket();
                 send_packet.Write((byte)1);
                 send_packet.Write("Hello client");
                 server.Send(address, send_packet);

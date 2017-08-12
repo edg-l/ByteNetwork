@@ -10,7 +10,7 @@ namespace ByteNetwork
 {
     public class NetServer
     {
-        public delegate void Recieve(IPEndPoint address, Packet packet);
+        public delegate void Recieve(IPEndPoint address, NetPacket packet);
         public event Recieve OnRecieve;
 
         private UdpClient ServerUDP;
@@ -31,11 +31,11 @@ namespace ByteNetwork
             while (!StopListening)
             {
                 var data = ServerUDP.Receive(ref Endpoint);
-                OnRecieve(Endpoint, new Packet(data));
+                OnRecieve(Endpoint, new NetPacket(data));
             }
         }
 
-        public void Send(IPEndPoint endpoint, Packet packet)
+        public void Send(IPEndPoint endpoint, NetPacket packet)
         {
             var data = packet.Buffer.ToArray();
             ServerUDP.Send(data, data.Length, endpoint);
