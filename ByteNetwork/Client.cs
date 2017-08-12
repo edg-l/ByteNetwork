@@ -30,6 +30,9 @@ namespace ByteNetwork
             Port = port;
         }
 
+        /// <summary>
+        /// Start recieving packets
+        /// </summary>
         public void Listen()
         {
             while (!StopListening)
@@ -40,6 +43,9 @@ namespace ByteNetwork
             }
         }
 
+        /// <summary>
+        /// Send a packet to the specified endpoint
+        /// </summary>
         public void Send(NetPacket packet)
         {
             var data = packet.Buffer.ToArray();

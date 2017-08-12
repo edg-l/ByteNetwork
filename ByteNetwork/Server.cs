@@ -26,6 +26,9 @@ namespace ByteNetwork
             Endpoint = new IPEndPoint(IPAddress.Any, port);
         }
 
+        /// <summary>
+        /// Start recieving packets
+        /// </summary>
         public void Listen()
         {
             while (!StopListening)
@@ -35,12 +38,18 @@ namespace ByteNetwork
             }
         }
 
+        /// <summary>
+        /// Send a packet to the specified endpoint
+        /// </summary>
         public void Send(IPEndPoint endpoint, NetPacket packet)
         {
             var data = packet.Buffer.ToArray();
             ServerUDP.Send(data, data.Length, endpoint);
         }
 
+        /// <summary>
+        /// Stop listening
+        /// </summary>
         public void Stop()
         {
             StopListening = true;
