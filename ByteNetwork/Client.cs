@@ -13,12 +13,14 @@ namespace ByteNetwork
     {
         private UdpClient ClientUDP;
 
-        public delegate void Recieve(byte[] data);
+        public delegate void Recieve(Packet packet);
         public event Recieve OnRecieve;
         private IPAddress Address;
         private int Port;
 
         private bool StopListening = false;
+
+        public UdpClient GetUDPClient() => ClientUDP;
 
         public NetClient(string address, int port)
         {
@@ -34,12 +36,13 @@ namespace ByteNetwork
             {
                 IPEndPoint endpoint = new IPEndPoint(Address, Port);
                 var data = ClientUDP.Receive(ref endpoint);
-                OnRecieve(data);
+                OnRecieve(new Packet(data));
             }
         }
 
-        public void Send(byte[] data)
+        public void Send(Packet packet)
         {
+            var data = packet.Buffer.ToArray();
             ClientUDP.Send(data, data.Length);
         }
 

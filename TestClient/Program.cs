@@ -20,20 +20,20 @@ namespace TestClient
             Thread ClientThread = new Thread(client.Listen);
             ClientThread.Start();
 
-            var example = "Hello world!";
-            byte[] buffer = NetHelper.AppendText(1, example, Encoding.UTF8);
-            buffer[0] = 1;
-
-            client.Send(buffer);
+            Packet send_packet = new Packet();
+            send_packet.Write((byte)1);
+            send_packet.Write("Hello world!");
+            client.Send(send_packet);
         }
 
-        private static void Client_OnRecieve(byte[] data)
+        private static void Client_OnRecieve(Packet packet)
         {
-            if (data[0] == 1)
+            var reader = new PacketReader(packet);
+            var type = reader.Read<byte>();
+            if (type == 1)
             {
-                string result = NetHelper.FromByteUTF8(data.Skip(1).ToArray());
-                Console.WriteLine("Recieved data: [{0}]", String.Join(", ", data));
-                Console.WriteLine(result.Replace("\n", ""));
+                string result = reader.Read<string>();
+                Console.WriteLine("Recieved data: {0}", result);
             }
         }
     }

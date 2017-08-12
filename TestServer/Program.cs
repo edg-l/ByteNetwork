@@ -22,16 +22,19 @@ namespace TestServer
             ListenThread.Start();
         }
 
-        private static void Server_OnRecieve(System.Net.IPEndPoint address, byte[] data)
+        private static void Server_OnRecieve(System.Net.IPEndPoint address, Packet packet)
         {
-            if (data[0] == 1)
+            var reader = new PacketReader(packet);
+            var type = reader.Read<byte>();
+            if (type == 1)
             {
-                string result = NetHelper.FromByteUTF8(data.Skip(1).ToArray());
-                Console.WriteLine("Recieved data from {0}:{1}: [{2}]", address.Address, address.Port, String.Join(", ", data));
-                Console.WriteLine(result.Replace("\n", ""));
-                var buffer = NetHelper.AppendText(1, "Welcome client!", Encoding.UTF8);
-                buffer[0] = 1;
-                server.Send(address, buffer);
+                string result = reader.Read<string>();
+                Console.WriteLine("Recieved data from {0}:{1}: {2}", address.Address, address.Port, result);
+
+                Packet send_packet = new Packet();
+                send_packet.Write((byte)1);
+                send_packet.Write("Hello client");
+                server.Send(address, send_packet);
             }
         }
     }

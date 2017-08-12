@@ -10,13 +10,15 @@ namespace ByteNetwork
 {
     public class NetServer
     {
-        public delegate void Recieve(IPEndPoint address, byte[] data);
+        public delegate void Recieve(IPEndPoint address, Packet packet);
         public event Recieve OnRecieve;
 
         private UdpClient ServerUDP;
         private IPEndPoint Endpoint;
 
         private bool StopListening = false;
+
+        public UdpClient GetUDPClient() => ServerUDP;
 
         public NetServer(int port)
         {
@@ -29,12 +31,13 @@ namespace ByteNetwork
             while (!StopListening)
             {
                 var data = ServerUDP.Receive(ref Endpoint);
-                OnRecieve(Endpoint, data);
+                OnRecieve(Endpoint, new Packet(data));
             }
         }
 
-        public void Send(IPEndPoint endpoint, byte[] data)
+        public void Send(IPEndPoint endpoint, Packet packet)
         {
+            var data = packet.Buffer.ToArray();
             ServerUDP.Send(data, data.Length, endpoint);
         }
 
