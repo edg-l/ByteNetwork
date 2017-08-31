@@ -28,8 +28,6 @@ namespace ByteNetwork.Example.Server
             if (type == 1)
             {
                 string result = reader.Read<string>();
-                Console.WriteLine("Recieved data from {0}:{1}: {2}", address.Address, address.Port, result);
-
                 NetPacket send_packet = new NetPacket();
                 send_packet.Write((byte)1);
                 send_packet.Write("Hello client");

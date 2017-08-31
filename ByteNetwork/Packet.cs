@@ -62,7 +62,6 @@ namespace ByteNetwork
         public void Write(string str)
         {
             byte[] buffer = Compress(str);
-            Console.WriteLine("INFO BYTES (LEN = {1}): [{0}]", String.Join(", ", buffer), buffer.Length);
             Write(buffer.Length); // Write size before appending str
             Buffer.AddRange(buffer);
         }
