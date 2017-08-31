@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Edgar Luque</authors>
+    <owners>Edgar Luque</owners>
+    <licenseUrl>https://github.com/Ryozuki/ByteNetwork/blob/master/UNLICENSE</licenseUrl>
+    <projectUrl>https://github.com/Ryozuki/ByteNetwork</projectUrl>
+    <iconUrl>http://cdn.onlinewebfonts.com/svg/download_558430.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>networking, server, client, simple</tags>
+  </metadata>
+</package>

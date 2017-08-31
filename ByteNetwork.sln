@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteNetwork", "ByteNetwork\ByteNetwork.csproj", "{644FB733-7C74-4BEB-BB5C-D88DB3BF6105}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteNetwork.Example.Server", "ByteNetwork.Example.Server\ByteNetwork.Example.Server.csproj", "{5CCD6664-E866-401E-8D2F-BD88C401DBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteNetwork.Example.Client", "ByteNetwork.Example.Client\ByteNetwork.Example.Client.csproj", "{43432382-6797-4E2F-8725-9F128F8CFB48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +19,19 @@ Global
 		{644FB733-7C74-4BEB-BB5C-D88DB3BF6105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{644FB733-7C74-4BEB-BB5C-D88DB3BF6105}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{644FB733-7C74-4BEB-BB5C-D88DB3BF6105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CCD6664-E866-401E-8D2F-BD88C401DBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CCD6664-E866-401E-8D2F-BD88C401DBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CCD6664-E866-401E-8D2F-BD88C401DBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CCD6664-E866-401E-8D2F-BD88C401DBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43432382-6797-4E2F-8725-9F128F8CFB48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43432382-6797-4E2F-8725-9F128F8CFB48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43432382-6797-4E2F-8725-9F128F8CFB48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43432382-6797-4E2F-8725-9F128F8CFB48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26D6C993-186E-43C6-A97C-57E3C1A7CF1F}
 	EndGlobalSection
 EndGlobal

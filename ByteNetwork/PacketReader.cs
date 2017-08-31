@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 
@@ -29,7 +31,7 @@ namespace ByteNetwork
             {
                 var length = Read<int>();
                 var string_bytes = Packet.Buffer.Skip(CurrentIndex).Take(length).ToArray();
-                var value = Encoding.UTF8.GetString(string_bytes);
+                string value = Decompress(string_bytes);
                 CurrentIndex += length;
                 return (T)Convert.ChangeType(value, typeof(T));
             }
@@ -71,6 +73,19 @@ namespace ByteNetwork
             }
 
             return (T)Convert.ChangeType(null, typeof(T));
+        }
+
+        public static string Decompress(byte[] bytes)
+        {
+            using (var msi = new MemoryStream(bytes))
+            using (var mso = new MemoryStream())
+            {
+                using (var gs = new GZipStream(msi, CompressionMode.Decompress))
+                {
+                    gs.CopyTo(mso);
+                }
+                return Encoding.Unicode.GetString(mso.ToArray());
+            }
         }
     }
 }

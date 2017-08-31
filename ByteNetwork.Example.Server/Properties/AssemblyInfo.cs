@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ByteNetwork")]
-[assembly: AssemblyDescription("A simple networking library.")]
+[assembly: AssemblyTitle("ByteNetwork.Example.Server")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Edgar Luque")]
-[assembly: AssemblyProduct("ByteNetwork")]
-[assembly: AssemblyCopyright("Copyright © 2017 Edgar Luque")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ByteNetwork.Example.Server")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("644fb733-7c74-4beb-bb5c-d88db3bf6105")]
+[assembly: Guid("5ccd6664-e866-401e-8d2f-bd88c401dbb8")]
 
 // Version information for an assembly consists of the following four values:
 //

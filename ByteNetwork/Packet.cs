@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Text;
 
 namespace ByteNetwork
@@ -59,9 +61,25 @@ namespace ByteNetwork
 
         public void Write(string str)
         {
-            var buffer = Encoding.UTF8.GetBytes(str); // len = can't know
+            byte[] buffer = Compress(str);
+            Console.WriteLine("INFO BYTES (LEN = {1}): [{0}]", String.Join(", ", buffer), buffer.Length);
             Write(buffer.Length); // Write size before appending str
             Buffer.AddRange(buffer);
+        }
+
+        public static byte[] Compress(string s)
+        {
+            var bytes = Encoding.Unicode.GetBytes(s);
+            using (var msi = new MemoryStream(bytes))
+            using (var mso = new MemoryStream())
+            {
+                using (var gs = new GZipStream(mso, CompressionMode.Compress))
+                {
+                    msi.CopyTo(gs);
+                }
+                return mso.ToArray();
+                //return Convert.ToBase64String(mso.ToArray());
+            }
         }
     }
 }
